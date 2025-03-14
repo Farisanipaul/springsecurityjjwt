@@ -1,4 +1,7 @@
 package com.springbootsecurityjwt.springsecurityjjwt.services;
 
-public class AuthService {
+import com.springbootsecurityjwt.springsecurityjjwt.dto.LoginDTO;
+
+public interface AuthService {
+    String login(LoginDTO loginDto);
 }
