@@ -31,6 +31,10 @@ public class SpringSecurityConfig {
 
     private JwtAuthenticationFilter authenticationFilter;
 
+    private static final String[] WHITE_LIST_URL = { "/api/v1/auth/**", "/v2/api-docs", "/v3/api-docs",
+            "/v3/api-docs/**", "/swagger-resources", "/swagger-resources/**", "/configuration/ui",
+            "/configuration/security", "/swagger-ui/**", "/webjars/**", "/swagger-ui.html", "/authenticate" };
+
     @Bean
     public static PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -47,7 +51,11 @@ public class SpringSecurityConfig {
 //                    authorize.requestMatchers(HttpMethod.GET, "/api/**").hasAnyRole("ADMIN", "USER");
 //                    authorize.requestMatchers(HttpMethod.PATCH, "/api/**").hasAnyRole("ADMIN", "USER");
 //                    authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll();
+//                    authorize.requestMatchers(HttpMethod.GET, "/checkster/check/**").permitAll();
+//                    authorize.requestMatchers(WHITE_LIST_URL).permitAll();
                     authorize.requestMatchers("/api/auth/**").permitAll();
+                    authorize.requestMatchers("/checkster/check/**").permitAll();
+                    authorize.requestMatchers(WHITE_LIST_URL).permitAll();
                     authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
                     authorize.anyRequest().authenticated();
                 }).httpBasic(Customizer.withDefaults());
@@ -68,18 +76,18 @@ public class SpringSecurityConfig {
 //    @Bean
 //    public UserDetailsService userDetailsService(){
 //
-//        UserDetails ramesh = User.builder()
-//                .username("ramesh")
-//                .password(passwordEncoder().encode("password"))
+//        UserDetails farisani = User.builder()
+//                .username("farisani")
+//                .password(passwordEncoder().encode("user"))
 //                .roles("USER")
 //                .build();
 //
 //        UserDetails admin = User.builder()
-//                .username("admin")
+//                .username("ratshikombo")
 //                .password(passwordEncoder().encode("admin"))
 //                .roles("ADMIN")
 //                .build();
 //
-//        return new InMemoryUserDetailsManager(ramesh, admin);
+//        return new InMemoryUserDetailsManager(farisani, admin);
 //    }
 }
