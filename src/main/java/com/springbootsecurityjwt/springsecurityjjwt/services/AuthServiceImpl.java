@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -49,19 +50,42 @@ public class AuthServiceImpl implements AuthService {
         return token;
     }
 
-    @Override
-    public User register(RegisterDTO registerDTO) {
-        User user = new User();
-        user.setName(registerDTO.getName());
-        user.setEmail(registerDTO.getEmail());
-        user.setUsername(registerDTO.getUsername());
-        user.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
-
-        Set<Role> roles = new HashSet<>();
-        Role userRole = roleRepository.findByName("ROLE_USER");
-        roles.add(userRole);
-        user.setRoles(roles);
-
-        return userRepository.save(user);
+//    @Override
+//    public User register(RegisterDTO registerDTO) {
+//        Optional<User> storedUser = userRepository.findByUsernameOrEmail(registerDTO.getUsername(), registerDTO.getEmail());
+//        if(storedUser.isPresent()) {
+//
+//        }
+//        User user = new User();
+//        user.setName(registerDTO.getName());
+//        user.setEmail(registerDTO.getEmail());
+//        user.setUsername(registerDTO.getUsername());
+//        user.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
+//
+//        Set<Role> roles = new HashSet<>();
+//        Role userRole = roleRepository.findByName("ROLE_USER");
+//        roles.add(userRole);
+//        user.setRoles(roles);
+//
+//        return userRepository.save(user);
+//    }
+@Override
+public User register(RegisterDTO registerDTO) {
+    Optional<User> storedUser = userRepository.findByUsernameOrEmail(registerDTO.getUsername(), registerDTO.getEmail());
+    if(storedUser.isPresent()) {
+        return null;
     }
+    User user = new User();
+    user.setName(registerDTO.getName());
+    user.setEmail(registerDTO.getEmail());
+    user.setUsername(registerDTO.getUsername());
+    user.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
+
+    Set<Role> roles = new HashSet<>();
+    Role userRole = roleRepository.findByName("ROLE_USER");
+    roles.add(userRole);
+    user.setRoles(roles);
+
+    return userRepository.save(user);
+}
 }

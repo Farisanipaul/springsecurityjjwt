@@ -31,6 +31,9 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<RegisterResponse> register(@RequestBody RegisterDTO registerDTO) {
         User user = authService.register(registerDTO);
+        if(user==null){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
         RegisterResponse registerResponse = new RegisterResponse();
         registerResponse.setId(user.getId());
         registerResponse.setName(user.getName());
