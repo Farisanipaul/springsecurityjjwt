@@ -1,7 +1,7 @@
 -- Insert into users table
 INSERT INTO users (email, username, password, name) 
 VALUES
-('ramesh@gmail.com', 'ramesh', '$2a$10$5PiyN0MsG0y886d8xWXtwuLXK0Y7zZwcN5xm82b4oDSVr7yF0O6em', 'ramesh'),
+('farisani@gmail.com', 'farisani', '$2a$10$5PiyN0MsG0y886d8xWXtwuLXK0Y7zZwcN5xm82b4oDSVr7yF0O6em', 'farisani'),
 ('admin@gmail.com', 'admin', '$2a$10$gqHrslMttQWSsDSVRTK1OehkkBiXsJ/a4z2OURU./dizwOQu5Lovu', 'admin');
 
 -- Insert into roles table

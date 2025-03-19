@@ -51,3 +51,6 @@ docker compose up -d --build
 - Check the tests endpoint to verify
 
 Alternatively you can use Postman or Curl to check the api
+
+Please check the following resource to learn more: https://www.javaguides.net/2024/01/spring-boot-security-jwt-tutorial.html
+
