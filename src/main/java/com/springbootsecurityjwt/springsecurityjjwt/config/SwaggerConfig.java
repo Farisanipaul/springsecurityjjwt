@@ -16,10 +16,10 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
 
         return new OpenAPI()
-                .info(new Info().title("JavaInUse Authentication Service"))
-                .addSecurityItem(new SecurityRequirement().addList("JavaInUseSecurityScheme"))
-                .components(new Components().addSecuritySchemes("JavaInUseSecurityScheme", new SecurityScheme()
-                        .name("JavaInUseSecurityScheme").type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")));
+                .info(new Info().title("Spring Security JWT Swagger"))
+                .addSecurityItem(new SecurityRequirement().addList("JavaSecurityJWTScheme"))
+                .components(new Components().addSecuritySchemes("JavaSecurityJWTScheme", new SecurityScheme()
+                        .name("JavaSecurityJWTScheme").type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")));
 
     }
 }
